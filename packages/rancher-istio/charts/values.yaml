@@ -1,3 +1,5 @@
+revision: "" # leave blank for no canary deployment, or set to given revision, eg: "1-7-2"
+
 grafana:
     enabled: false
     repository: grafana/grafana
