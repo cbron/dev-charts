@@ -48,6 +48,7 @@ spec:
     {{- end }}
   profile: default
   tag: 1.6.5
+  revision: {{ .Values.revision }}
   values:
     global:
       arch:

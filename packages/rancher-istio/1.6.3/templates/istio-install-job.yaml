@@ -15,18 +15,22 @@ spec:
     spec:
       containers:
         - name: istioctl-installer
-          image: rancher/istio-installer:0.1.1
+          image: cbron/istio-installer:1.6.3
           env:
           - name: RELEASE_NAME
             value: {{ .Release.Name }}
           - name: REVISION_NAME
             value: {{ .Chart.Version }}
+          {{- if .Values.revision }}
+          - name: CANARY_REVISION
+            value: {{ .Values.revision }}
+          {{- end }}
           {{- if .Values.overlayFile }}
           - name: APPLY_OVERLAY_CONFIG
             value: true
-          {{ end }}
+          {{- end }}
           command: ["/bin/sh","-c"]
-          args: ["/usr/local/app/scripts/run.sh"]
+          args: ["/usr/local/app/scripts/run.sh; sleep 22"]
           volumeMounts:
           - name: config-volume
             mountPath: /app/istio-base.yaml
