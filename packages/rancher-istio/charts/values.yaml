@@ -51,3 +51,15 @@ global:
     image: proxyv2
   proxy_init:
     image: proxyv2
+
+kiali:
+  enabled: true
+  # TODO: fix image below to rancher hub
+  # repository: rancher/kiali-kiali
+  # tag: v1.9
+  contextPath: /
+  dashboard:
+    grafanaURL: http://monitoring-grafana.monitoring-system.svc
+    auth:
+      strategy: anonymous
+  prometheusAddr: http://monitoring-rancher-monitor-prometheus.monitoring-system.svc:9090
